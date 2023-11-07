@@ -3,12 +3,23 @@ body {
 }
 
 .container {
-    margin: 0;
     padding-top: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+.bg {
+    position: relative;
+}
+
+.video-stream {
+    position: absolute;
+    top: 50px; /* Adjust the top value to position the video stream vertically */
+    left: 440px; /* Adjust the left value to position the video stream horizontally */
+    z-index: 1; /* Set a higher z-index to ensure video-stream appears on top of the SVG background */
 }
 
 .button {
