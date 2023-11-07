@@ -1,0 +1,16 @@
+body {
+    background-color: #8AAE9E;
+}
+
+.container {
+    margin: 0;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    margin-top: 20px;
+}

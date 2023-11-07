@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <title>Percy</title>
+</head>
+<body>
+    <div class="container">
+        <div class="bg">
+            <svg width="1300" height="620">
+                <image 
+                    href="{{ url_for('static', filename='images/background.svg') }}"
+                    width="100%"
+                    style="max-width: 100%;"
+                />
+            </svg>
+        </div>
+
+        <div class="goto-button">
+            <a href="">
+                <button class="button">Auto</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
