@@ -3,7 +3,6 @@ body {
 }
 
 .container {
-    padding-top: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,11 +16,47 @@ body {
 
 .video-stream {
     position: absolute;
-    top: 50px; /* Adjust the top value to position the video stream vertically */
-    left: 440px; /* Adjust the left value to position the video stream horizontally */
-    z-index: 1; /* Set a higher z-index to ensure video-stream appears on top of the SVG background */
+    z-index: 1;
 }
 
-.button {
-    margin-top: 20px;
+#forward {
+    display: inline-block;
+    width: 60px;  /* Button size */
+    height: 60px; /* Button size */
+    z-index: 2;
+    position: absolute;
+    top: 230px;  /* Position button */
+    left: 100px; /* Position button */
+}
+
+#backward {
+    display: inline-block;
+    width: 60px;  /* Button size */
+    height: 60px; /* Button size */
+    z-index: 2;
+    position: absolute;
+    top: 300px;  /* Position button */
+    left: 100px;  /* Position button */
+    rotate: 180deg;
+}
+
+button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* Adjust sizes for smaller devices */
+@media (max-width: 1310px) {
+    .bg {
+        transform: scale(0.5);
+    }
+    .video-stream {
+        transform: scale(0.5);
+    }
+    button {
+        transform: scale(0.75);
+    }
 }

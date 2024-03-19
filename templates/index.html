@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
     <title>Percy</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </head>
+
 <body>
     <div class="container">
         <div class="bg">
@@ -16,16 +20,31 @@
                     style="max-width: 100%;"
                 />
             </svg>
+
+            <!-- Forward and Reverse motor controls-->
+            <button id="forward">
+                <svg viewBox="0 0 100 100" width="50" height="50">
+                    <image 
+                        href="{{ url_for('static', filename='images/arrow.svg') }}"
+                        width="100%"
+                        height="100%"
+                    />
+                </svg>
+            </button>
+            <button id="backward">
+                <svg viewBox="0 0 100 100" width="50" height="50">
+                    <image 
+                        href="{{ url_for('static', filename='images/arrow.svg') }}"
+                        width="100%"
+                        height="100%"
+                    />
+                </svg>
+            </button>
         </div>
 
+        <!-- Video stream from the PiCamera -->
         <div class="video-stream">
             <img src="{{ url_for('video_feed') }}" width="640" height="480">
-        </div>
-
-        <div class="goto-button">
-            <a href="">
-                <button class="button">Auto</button>
-            </a>
         </div>
     </div>
 </body>
