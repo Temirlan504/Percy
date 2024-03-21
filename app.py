@@ -2,6 +2,9 @@ from flask import Flask, jsonify, render_template, Response
 from picamera2 import Picamera2
 import cv2
 import RPi.GPIO as GPIO
+from smbus import SMBus
+import time
+from ads1115 import TemperatureSensor
 
 app = Flask(__name__)
 
@@ -9,18 +12,30 @@ app = Flask(__name__)
 MOTOR1_PIN_1 = 17
 MOTOR1_PIN_2 = 27
 
+MOTOR2_PIN_1 = 22
+MOTOR2_PIN_2 = 10
+
+# I2C setup for ADC
+ADC_i2c = SMBus(1) # I2C bus on GPIO2 (SDA) and GPIO3 (SCL)
+temp_sensor = TemperatureSensor(ADC_i2c)
+
 # GPIO setup
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(MOTOR1_PIN_1, GPIO.OUT)
 GPIO.setup(MOTOR1_PIN_2, GPIO.OUT)
+GPIO.setup(MOTOR2_PIN_1, GPIO.OUT)
+GPIO.setup(MOTOR2_PIN_2, GPIO.OUT)
 
 # Set PWM frequency and duty cycle
 frequency = 1000  # Adjust frequency as needed (Hz)
-duty_cycle = 100   # Adjust duty cycle as needed (0% - 100%)
+duty_cycle = 50   # Adjust duty cycle as needed (0% - 100%)
 
 # Create PWM instances
 motor_pwm1 = GPIO.PWM(MOTOR1_PIN_1, frequency)
 motor_pwm2 = GPIO.PWM(MOTOR1_PIN_2, frequency)
+motor2_pwm1 = GPIO.PWM(MOTOR2_PIN_1, frequency)
+motor2_pwm2 = GPIO.PWM(MOTOR2_PIN_2, frequency)
+
 
 # Picamera setup
 picam2 = Picamera2()
@@ -56,28 +71,42 @@ def video_feed():
 # Render 'Home' page
 @app.route('/')
 def index():
-    return render_template('index.html')
+    adc_out_binary = temp_sensor.read(ADC_i2c)
+    adc_out_decimal = int(adc_out_binary, 2)
+
+    # Convert the ADC output to temperature
+    # Derived from y=mx+b
+    temperatureC = 0.015107 * adc_out_decimal + 11.5564
+
+    return render_template(
+        'index.html',
+        temperature=round(temperatureC, 2)
+    )
 
 
 # Motor control routes
 @app.route('/forward-start')
 def forward_start():
     motor_pwm1.start(duty_cycle)
+    motor2_pwm1.start(duty_cycle)
     return jsonify(message='Motor started')
 
 @app.route('/forward-stop')
 def forward_stop():
     motor_pwm1.stop()
+    motor2_pwm1.stop()
     return jsonify(message='Motor stopped')
 
 @app.route('/backward-start')
 def reverse_start():
     motor_pwm2.start(duty_cycle)
+    motor2_pwm2.start(duty_cycle)
     return jsonify(message='Motor started')
 
 @app.route('/backward-stop')
 def reverse_stop():
     motor_pwm2.stop()
+    motor2_pwm2.stop()
     return jsonify(message='Motor stopped')
 
 

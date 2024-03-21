@@ -19,24 +19,34 @@ body {
     z-index: 1;
 }
 
+.temperature {
+    position: absolute;
+    z-index: 2;
+    top: 50px;
+    left: 70px;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(38,38,38);
+}
+
 #forward {
     display: inline-block;
-    width: 60px;  /* Button size */
-    height: 60px; /* Button size */
+    width: 100px;  /* Button size */
+    height: 100px; /* Button size */
     z-index: 2;
     position: absolute;
     top: 230px;  /* Position button */
-    left: 100px; /* Position button */
+    left: 80px; /* Position button */
 }
 
 #backward {
     display: inline-block;
-    width: 60px;  /* Button size */
-    height: 60px; /* Button size */
+    width: 100px;  /* Button size */
+    height: 100px; /* Button size */
     z-index: 2;
     position: absolute;
-    top: 300px;  /* Position button */
-    left: 100px;  /* Position button */
+    top: 350px;  /* Position button */
+    left: 80px;  /* Position button */
     rotate: 180deg;
 }
 
