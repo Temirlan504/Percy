@@ -14,11 +14,13 @@ body {
     position: relative;
 }
 
+/* Video stream window */
 .video-stream {
     position: absolute;
     z-index: 1;
 }
 
+/* Temperature display */
 .temperature {
     position: absolute;
     z-index: 2;
@@ -29,6 +31,7 @@ body {
     color: rgb(38,38,38);
 }
 
+/* Button forward */
 #forward {
     display: inline-block;
     width: 100px;  /* Button size */
@@ -39,6 +42,7 @@ body {
     left: 80px; /* Position button */
 }
 
+/* Button backward */
 #backward {
     display: inline-block;
     width: 100px;  /* Button size */
@@ -48,6 +52,18 @@ body {
     top: 350px;  /* Position button */
     left: 80px;  /* Position button */
     rotate: 180deg;
+}
+
+/* Button left */
+#left {
+    display: inline-block;
+    width: 100px;  /* Button size */
+    height: 100px; /* Button size */
+    z-index: 2;
+    position: absolute;
+    top: 280px;  /* Position button */
+    left: 1180px;  /* Position button */
+    rotate: 90deg;
 }
 
 button {

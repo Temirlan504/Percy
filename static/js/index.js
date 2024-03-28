@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Get the buttons
     let forwardButton = document.getElementById('forward');
     let backwardButton = document.getElementById('backward');
+    let leftButton = document.getElementById('left');
 
     
     // Press and hold button to move forward
@@ -26,6 +27,18 @@ document.addEventListener('DOMContentLoaded', function () {
     backwardButton.addEventListener('touchend', function(e) {
         e.preventDefault();
         stopActionBack();
+    });
+
+    // Press and hold button to move left
+    leftButton.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        startActionLeft();
+    });
+
+    // Release button to stop moving left
+    leftButton.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        stopActionLeft();
     });
 
 
@@ -53,6 +66,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function stopActionBack() {
         fetch('/backward-stop')
+            .then(response => response.json())
+            .then(data => console.log(data.message))
+            .catch(error => console.error('Error:', error));
+    }
+
+    function startActionLeft() {
+        fetch('/left-start')
+            .then(response => response.json())
+            .then(data => console.log(data.message))
+            .catch(error => console.error('Error:', error));
+    }
+
+    function stopActionLeft() {
+        fetch('/left-stop')
             .then(response => response.json())
             .then(data => console.log(data.message))
             .catch(error => console.error('Error:', error));
