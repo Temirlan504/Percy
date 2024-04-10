@@ -26,3 +26,8 @@ Our primary objectives for this project include:
 - Establishing a Live Video Feed to a Webserver
 - Developing a User-Friendly Joystick Controller
 - Integrating Temperature Sensing for Environmental Data
+
+## Team members:
+* Temirlan Yergazy
+* Scott Edwards
+* Ronald Jhenser Olay
