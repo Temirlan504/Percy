@@ -1,4 +1,5 @@
 # Mars Rover Replica with Live Video Transmission and Remote Control
+![20240408_175424](https://github.com/Temirlan504/Percy/assets/113613569/8dfdc94e-2044-480b-8f40-cbcf9bba8aa6)
 
 ## Project Overview
 Our project involves creating a replica of a Mars rover equipped with advanced features like: live video transmission to a webserver, robotic arm, virtual joystick controller, and environmental sensor.
